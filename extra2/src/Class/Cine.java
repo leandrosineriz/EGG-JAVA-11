@@ -28,6 +28,10 @@ public class Cine {
     }
     
     public boolean comprarEntrada(Espectador e) {
+        if (!sala.hayLibres()) {
+            System.out.println("No hay asientos disponibles.");
+            return false;
+        }
         if (e.getEdad()<this.pelicula.getEdadMin()) {
             System.out.println("No puede ver la pelicula por que es menor de edad.");
             return false;
@@ -36,10 +40,7 @@ public class Cine {
             System.out.println("No posee el dinero suficiente para comprar el boleto");
             return false;
         }
-        if (!sala.hayLibres()) {
-            System.out.println("No hay asientos disponibles.");
-            return false;
-        }
+        
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
         sala.MostrarSala();
         System.out.println("\nIngrese el numero de asiento que desea:");
